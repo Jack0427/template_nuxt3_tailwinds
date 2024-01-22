@@ -15,7 +15,6 @@ export default defineNuxtConfig({
   vite: {
     envDir: 'env'
   },
-  css: ['element-plus/dist/index.css'],
   build: {
     transpile: ['element-plus/es']
   },
