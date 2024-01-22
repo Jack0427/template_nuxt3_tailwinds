@@ -1,4 +1,7 @@
 import { loadEnv } from 'vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+
 const envScript = (process.env as any).npm_lifecycle_script.split(' ')
 const envName = envScript[envScript.length - 1]
 const envData = loadEnv(envName, 'env')
@@ -13,11 +16,18 @@ export default defineNuxtConfig({
   },
   modules: ['@nuxtjs/tailwindcss', '@nuxtjs/i18n', '@pinia/nuxt'],
   vite: {
-    envDir: 'env'
+    envDir: 'env',
+    plugins: [
+      Components({
+        dts: true,
+        resolvers: [ElementPlusResolver()]
+      })
+    ]
   },
   build: {
     transpile: ['element-plus/es']
   },
+  css: ['element-plus/dist/index.css'],
   i18n: {
     langDir: 'locales',
     locales: [

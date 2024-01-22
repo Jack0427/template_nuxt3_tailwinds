@@ -6,8 +6,11 @@
     I18nChange
     button(@click="counterStore.increment") +{{ 1 }}
     p {{ counterStore.doubleCount }}
+    el-button click
+    
 </template>
 <script setup>
+import { ElButton } from 'element-plus'
 import { useCounterStore } from '@/stores/countes'
 // import { getAnnouncement } from '@/api/login'
 // const router = useRouter()
