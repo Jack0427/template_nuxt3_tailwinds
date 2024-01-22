@@ -7,24 +7,26 @@
     button(@click="counterStore.increment") +{{ 1 }}
     p {{ counterStore.doubleCount }}
 </template>
-<script lang="ts" setup>
+<script setup>
 import { useCounterStore } from '@/stores/countes'
-import { getAnnouncement } from '@/api/login'
+// import { getAnnouncement } from '@/api/login'
 // const router = useRouter()
 // router.push({ name: 'user-id', params: { id: 1 }, query: { id: 1 } })
 const counterStore = useCounterStore()
-const { public: env } = await useRuntimeConfig()
-const getAn = async () => {
-  try {
-    const res: any = await getAnnouncement({
-      lang: 'tw',
-      marquee: 'true',
-      page: 1,
-      size: 3
-    })
-  } catch (error) {
-    console.error(error)
-  }
-}
-getAn()
+// const { public: env } = await useRuntimeConfig()
+// const getAn = async () => {
+//   try {
+//     const res: any = await getAnnouncement({
+//       lang: 'tw',
+//       marquee: 'true',
+//       page: 1,
+//       size: 3
+//     })
+//   } catch (error) {
+//     console.error(error)
+//   }
+// }
+// getAn()
+const { moment } = useMoment()
+console.log(moneyFormat(100000, 3))
 </script>
