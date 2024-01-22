@@ -11,6 +11,10 @@ export default defineNuxtConfig({
   typescript: {
     typeCheck: true
   },
+  devServer: {
+    port: 9527, // default: 3000
+    host: '0.0.0.0' // default: localhost
+  },
   runtimeConfig: {
     public: envData
   },
