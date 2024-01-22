@@ -1,19 +1,30 @@
-<template>
-  <div class="bg-white py-24">
-    <div class="flex flex-col items-center">
-      <h1 class="text-6xl font-semibold text-gray-800">這裡是首頁</h1>
-      <NuxtLink to="/about">前往 About</NuxtLink>
-      <p>{{ count }}</p>
-      <button @click="increment">+1</button>
-      <!-- <NuxtLink :to="{ name: 'user', params: { id: 1 } }">前往 user</NuxtLink> -->
-      <!-- <p @click="fn">go user</p> -->
-    </div>
-  </div>
+<template lang="pug">
+.bg-white.py-24 
+  .flex.flex-col.items-center
+    h1(class="text-6xl font-semibold text-gray-800") 這裡是首頁
+    NuxtLink(to="/about") 前往 {{ $t('about') }}
+    I18nChange
+    button(@click="counterStore.increment") +{{ 1 }}
+    p {{ counterStore.doubleCount }}
 </template>
-<script setup>
+<script lang="ts" setup>
+import { useCounterStore } from '@/stores/countes'
+import { getAnnouncement } from '@/api/login'
 // const router = useRouter()
 // router.push({ name: 'user-id', params: { id: 1 }, query: { id: 1 } })
-if (process.client) {
-  console.log(localStorage)
+const counterStore = useCounterStore()
+const { public: env } = await useRuntimeConfig()
+const getAn = async () => {
+  try {
+    const res: any = await getAnnouncement({
+      lang: 'tw',
+      marquee: 'true',
+      page: 1,
+      size: 3
+    })
+  } catch (error) {
+    console.error(error)
+  }
 }
+getAn()
 </script>
