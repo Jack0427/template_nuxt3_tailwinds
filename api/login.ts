@@ -1,7 +1,7 @@
 import httpRequest from '~/service'
 
-const getAnnouncement = (params: any) => {
-  return httpRequest.get('api/allAnnouncementTitles', params)
+const getAnnouncement = (data: any) => {
+  return httpRequest.post('api/allAnnouncementTitles', data)
 }
 
 export { getAnnouncement }

@@ -1,4 +1,3 @@
-// import { ElMessage } from 'element-plus'
 const fetch = (url: string, options?: any): Promise<any> => {
   const { public: env } = useRuntimeConfig()
   const token = useCookie('token')
@@ -12,18 +11,8 @@ const fetch = (url: string, options?: any): Promise<any> => {
     useFetch(reqUrl, { ...options, headers })
       .then(({ data }: any) => {
         const value = data.value
-        if (!data._rawValue) {
-          // 这里处理错误回调
-          reject(value)
-        } else if (data._rawValue.code !== '0') {
-          alert({
-            message: data._rawValue.msg,
-            type: 'error'
-          })
-        } else {
-          console.log('40data', data._rawValue)
-          resolve(ref(data))
-        }
+        console.log(value)
+        resolve(ref(data))
       })
       .catch((err: any) => {
         reject(err)
@@ -36,8 +25,8 @@ export default new (class Http {
     return fetch(url, { method: 'get', params })
   }
 
-  post(url: string, params?: any): Promise<any> {
-    return fetch(url, { method: 'post', params })
+  post(url: string, body?: any): Promise<any> {
+    return fetch(url, { method: 'post', body })
   }
 
   put(url: string, body?: any): Promise<any> {
